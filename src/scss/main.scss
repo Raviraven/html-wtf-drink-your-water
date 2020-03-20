@@ -1,16 +1,87 @@
 @import "_normalize";
 @import "_variables";
-
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap&subset=latin-ext");
 
 html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
+.button{
+  width:256px;
+  height: 48px;
+}
+
 body {
-  color: $yellow;
-  background: $violet;
+  color: $blue;
+  background: $yellow-BG;
+
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+
+  min-height: 99vh;
+  display: grid;
+  grid-template-rows: 1fr 32px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 12px;
+
+  &__link {
+    text-decoration: none;
+    font-weight: bold;
+    color: $blue;
+  }
+}
+
+.glass {
+  display: flex;
+  justify-content: center;
+
+  position: relative;
+  margin-bottom: 80px;
+
+  &__counter {
+    color: $black;
+    font-size: 112px;
+
+    position: absolute;
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.navigation{
+  font-size: 18px;
+  line-height: 21px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__add{
+    @extend .button;
+  }
+
+  &__remove{
+    @extend .button;
+
+    background-color: $yellow-BG;
+    border: none;
+  }
 }
