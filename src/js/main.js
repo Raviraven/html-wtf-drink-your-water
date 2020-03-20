@@ -16,8 +16,17 @@ if ('serviceWorker' in navigator) {
 const glassCounter = document.querySelector('.glass__counter--js');
 const navigationAdd = document.querySelector('.navigation__add--js');
 const navigationRemove = document.querySelector('.navigation__remove--js');
+const water = document.querySelector('.glass__water');
 
 const key = new Date().toISOString().slice(0, 10);
+
+
+function changeGlassCounter(element, className){
+  setTimeout(() => {
+    element.classList.remove(className);
+  }, 500);
+}
+
 
 window.addEventListener('load', function(){
   let counter = 0;
@@ -36,6 +45,9 @@ navigationAdd.addEventListener('click', function(e){
   glassCounter.innerHTML = counter;
   
   localStorage.setItem(key, counter);
+
+  water.classList.add('glass__water--add');
+  changeGlassCounter(water, 'glass__water--add');
 });
 
 navigationRemove.addEventListener('click', function(e){
@@ -46,4 +58,7 @@ navigationRemove.addEventListener('click', function(e){
 
   if(localStorage.getItem(key))
     localStorage.setItem(key, counter);
+
+  water.classList.add('glass__water--remove');
+  changeGlassCounter(water, 'glass__water--remove');
 });

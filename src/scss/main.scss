@@ -2,6 +2,36 @@
 @import "_variables";
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap&subset=latin-ext");
 
+@mixin animGlassOfWater($scaleChange, $fillColor) {
+  fill: $fillColor;
+  transform: scale($scaleChange);
+  transform-origin: 50% 50%;
+}
+
+@keyframes addGlassOfWater {
+  0% {
+    @include animGlassOfWater(1, $fluid);
+  }
+  50% {
+    @include animGlassOfWater(1.1, $fluid-blue);
+  }
+  100% {
+    @include animGlassOfWater(1, $fluid);
+  }
+}
+
+@keyframes removeGlassOfWater {
+  0% {
+    @include animGlassOfWater(1, $fluid);
+  }
+  50% {
+    @include animGlassOfWater(0.9, $fluid-red);
+  }
+  100% {
+    @include animGlassOfWater(1, $fluid);
+  }
+}
+
 html {
   box-sizing: border-box;
 }
@@ -12,8 +42,8 @@ html {
   box-sizing: inherit;
 }
 
-.button{
-  width:256px;
+.button {
+  width: 256px;
   height: 48px;
 }
 
@@ -21,7 +51,7 @@ body {
   color: $blue;
   background: $yellow-BG;
 
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 500;
 
   min-height: 99vh;
@@ -50,6 +80,16 @@ body {
   position: relative;
   margin-bottom: 80px;
 
+  &__water {
+    transition: fill 0.3s ease-in-out, transform 0.3s ease-in-out;
+    &--add {
+      animation: addGlassOfWater 0.3s ease-in-out;
+    }
+    &--remove {
+      animation: removeGlassOfWater 0.3s ease-in-out;
+    }
+  }
+
   &__counter {
     color: $black;
     font-size: 112px;
@@ -65,7 +105,7 @@ body {
   justify-content: center;
 }
 
-.navigation{
+.navigation {
   font-size: 18px;
   line-height: 21px;
 
@@ -74,11 +114,12 @@ body {
   justify-content: center;
   align-items: center;
 
-  &__add{
+  &__add {
     @extend .button;
+    border-radius: 4px;
   }
 
-  &__remove{
+  &__remove {
     @extend .button;
 
     background-color: $yellow-BG;
