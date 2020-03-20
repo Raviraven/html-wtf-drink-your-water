@@ -1,7 +1,5 @@
 "use strict";
 
-// service worker registration - remove if you're not going to use it
-
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
     navigator.serviceWorker.register('serviceworker.js').then(function(registration) {
@@ -14,9 +12,20 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// place your code below
 
+const glassCounter = document.querySelector('.glass__counter--js');
+const navigationAdd = document.querySelector('.navigation__add--js');
+const navigationRemove = document.querySelector('.navigation__remove--js');
 
-console.log(`Hello world!`);
+navigationAdd.addEventListener('click', function(e){
+  let counter = parseInt(glassCounter.innerHTML);
+  counter += 1;
+  glassCounter.innerHTML = counter;
+});
 
-
+navigationRemove.addEventListener('click', function(e){
+  let counter = parseInt(glassCounter.innerHTML);
+  if(counter > 0)
+    counter-=1;
+  glassCounter.innerHTML = counter;
+});
